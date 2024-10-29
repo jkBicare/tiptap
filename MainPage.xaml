@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="tiptap.MainPage"
+             BackgroundImageSource="Reources/Images/starsbg.jpg">
+    
+    <!--This part was the color I will use in the code-->
+    <ContentPage.Resources>
+        <Color x:Key="Primary">#D8A444</Color>
+        <Color x:Key="Secondary">#fbfbfb</Color>
+        <Color x:Key="Tertiary">#0D0D0D</Color>
+    </ContentPage.Resources>
+
+    <!--This grid section will be the main grid-->
+    <Grid>
+        
+        <!--This are the definition for cols and rows of the main grid-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*"/>
+            <RowDefinition Height=".2*"/>
+            <RowDefinition Height=".6*"/>
+        </Grid.RowDefinitions>
+
+        <!--This grid section will be row 1 that contains the heading title-->
+        <Grid
+            Margin="0">
+
+            <Image Source="headerbrd.png"
+                   HeightRequest="70"
+                   Aspect="AspectFill"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+
+            <Label HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   FontFamily="MonomaniacOne"
+                   FontSize="20"
+                   TextColor="{StaticResource Primary}">TipTap Application</Label>
+
+        </Grid>
+
+        <!--This grid section will be the row 2 that contains the displays of the results-->
+        <Grid
+            Grid.Row="1"
+            Margin="0,30,0,0">
+
+            <!--Image used as border-->
+            <Image Source="rectangularbrd.jpg"
+                   Aspect="AspectFill"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   HeightRequest="200"/>
+
+            <!--This frame contains the results-->
+            <Frame
+                BackgroundColor="{StaticResource Secondary}"
+                Opacity="0.6"
+                HeightRequest="150"
+                WidthRequest="300">
+
+                <!--This grid section defines rows and cols for results-->
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".6*"/>
+                        <RowDefinition Height=".4*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--The main result-->
+                    <Label
+                        x:Name="lblTotal"
+                        FontSize="45"
+                        HorizontalTextAlignment="Center"
+                        TextColor="{StaticResource Tertiary}"
+                        Text="P0.00"
+                        FontFamily="MonomaniacOne"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Grid Grid.Row="1"
+                          VerticalOptions="Center">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--Vertical Stacks to display vertically the results-->
+                        <VerticalStackLayout
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center">
+
+                            <!--Labels of the sub resuts to display-->
+                            <Label
+                                Text="SUBTOTAL"
+                                FontFamily="MonomaniacOne"
+                                FontSize="16"
+                                TextColor="{StaticResource Tertiary}"
+                                FontAttributes="Bold"/>
+
+                            <Label
+                                x:Name="lblSubtotal"
+                                FontFamily="MonomaniacOne"
+                                TextColor="{StaticResource Tertiary}"
+                                Text="P0.00"/>
+
+                        </VerticalStackLayout>
+
+                        <BoxView
+                            Grid.Column="1"
+                            VerticalOptions="Center"/>
+
+                        <VerticalStackLayout
+                            Grid.Column="2">
+
+                            <Label
+                                Text="TIP PER PERSON"
+                                FontSize="16"
+                                FontFamily="MonomaniacOne"
+                                TextColor="{StaticResource Tertiary}"
+                                FontAttributes="Bold"/>
+
+                            <Label
+                                x:Name="lblPerperson"
+                                FontFamily="MonomaniacOne"
+                                TextColor="{StaticResource Tertiary}"
+                                Text="P0.00"/>
+
+                        </VerticalStackLayout>
+
+                    </Grid>
+                    
+                </Grid>
+
+            </Frame>
+
+        </Grid>
+        
+        <!--This grid section will be the last row section for the inputting and options of percentage-->
+        <Grid
+            Grid.Row="2"
+            Margin="0,15,0,0">
+            
+            <!--Grid definitions for this grid section-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".3*"/>
+                <ColumnDefinition Width=".7*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!--This grid section contain the entry or where the bill be inputted-->
+            <Grid Grid.ColumnSpan="2"
+                  Margin="0,40,0,0">
+
+                <!--Image used for entry border-->
+                <Image Source="smallrecbrd.png"
+                       HeightRequest="70"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Aspect="AspectFill"/>
+                
+                <Entry
+                    x:Name="txtBill"
+                    Keyboard="Numeric"
+                    WidthRequest="200"
+                    Placeholder="Enter Your Bill Here"
+                    HorizontalTextAlignment="Center"
+                    VerticalOptions="CenterAndExpand"
+                    FontSize="15"
+                    FontFamily="MonomaniacOne"
+                    TextColor="{StaticResource Primary}"
+                    PlaceholderColor="{StaticResource Primary}"
+                    Completed="txtBill_Completed"/>
+
+            </Grid>
+
+            <!--Second row of the last grid row section-->
+            <Label
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                Margin="0,0,0,-20"
+                x:Name="lblTip"
+                Text="Tip Percentage:"
+                FontSize="24"
+                FontFamily="MonomaniacOne"
+                TextColor="{StaticResource Primary}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"/>
+
+            <!--Buttons for tip percentage-->
+            <HorizontalStackLayout
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Spacing="20">
+
+                    <Button x:Name="btnTen"
+                            Text="10%"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            FontFamily="MonomaniacOne"
+                            HeightRequest="60"
+                            WidthRequest="70"
+                            Opacity="0.8"
+                            TextColor="{StaticResource Tertiary}"
+                            BackgroundColor="{StaticResource Secondary}"
+                            Clicked="btnTen_Clicked"/>
+
+                    <Button x:Name="btnfifteen"
+                            Text="15%"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            FontFamily="MonomaniacOne"
+                            HeightRequest="60"
+                            WidthRequest="70"
+                            Opacity="0.8"
+                            BorderColor="{StaticResource Primary}"
+                            TextColor="{StaticResource Tertiary}"
+                            BackgroundColor="{StaticResource Secondary}"
+                            Clicked="btnfifteen_Clicked"/>
+
+                    <Button x:Name="btnTwenty"
+                            Text="20%"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            FontFamily="MonomaniacOne"
+                            HeightRequest="60"
+                            WidthRequest="70"
+                            Opacity="0.8"
+                            BorderColor="{StaticResource Primary}"
+                            TextColor="{StaticResource Tertiary}"
+                            BackgroundColor="{StaticResource Secondary}"
+                            Clicked="btnTwenty_Clicked"/>
+
+            </HorizontalStackLayout>
+
+            <!--Entry for Tip percentage-->
+            <Grid Grid.Row="3"
+                      Grid.ColumnSpan="2"
+                      Margin="0,30,0,0">
+
+                    <!--Image used for entry border-->
+                    <Image Source="smallrecbrd.png"
+                           HeightRequest="70"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           Aspect="AspectFit"/>
+
+                    <Entry
+                        x:Name="txtPercentage"
+                        Keyboard="Numeric"
+                        WidthRequest="200"
+                        FontSize="15"
+                        ZIndex="1"
+                        FontFamily="MonomaniacOne"
+                        Placeholder="Enter Custom Tip Amount"
+                        PlaceholderColor="{StaticResource Primary}"
+                        TextColor="{StaticResource Primary}"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        VerticalOptions="CenterAndExpand"
+                        Completed="txtPercentage_Completed"/>
+
+                </Grid>
+
+            <!--Slider for Tip Percentage-->
+            <Slider
+                Margin="0,20,0,0"
+                x:Name="sldTip"
+                Grid.Row="4"
+                Grid.ColumnSpan="2"
+                WidthRequest="300"
+                MinimumTrackColor="{StaticResource Primary}"
+                MaximumTrackColor="{StaticResource Secondary}"
+                ThumbImageSource="diamond.png"
+                Maximum="50"
+                Minimum="0"
+                ValueChanged="sldTip_ValueChanged"/>
+
+            <!--Number of Persons-->
+            <HorizontalStackLayout
+                Grid.Row="5"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+
+                <ImageButton Source="minusbtn.png"
+                             Margin="0,-10,0,0"
+                                 HeightRequest="100"
+                                 WidthRequest="100"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Aspect="AspectFill"
+                                 ZIndex="1"
+                                 Clicked="btnMinus_Clicked"/>
+
+                <Grid Margin="-20,0,-20,0">
+
+                    <Image Source="entrybrd.png"
+                           HeightRequest="70"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           Aspect="AspectFit"/>
+
+                    <Entry
+                        x:Name="txtNumPerson"
+                        Keyboard="Numeric"
+                        WidthRequest="50"
+                        FontSize="24"
+                        FontFamily="MonomaniacOne"
+                        Placeholder="1"
+                        PlaceholderColor="{StaticResource Primary}"
+                        TextColor="{StaticResource Primary}"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        VerticalOptions="CenterAndExpand"
+                        Completed="txtNumPerson_Completed"/>
+
+                </Grid>
+
+                <ImageButton Source="plusbtn.png"
+                             HeightRequest="100"
+                             WidthRequest="100"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             Aspect="AspectFill"
+                             ZIndex="1"
+                             Clicked="btnPlus_Clicked"/>
+
+            </HorizontalStackLayout>
+            
+        </Grid>
+            
+    </Grid>
+
+</ContentPage>
+
+
